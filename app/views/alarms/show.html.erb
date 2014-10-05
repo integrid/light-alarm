@@ -1,0 +1,29 @@
+<div class="container" style="margin-top: 40px;">
+
+  <% if @alarm.nil? -%>
+
+    <%= form_for :alarm do |f| %>
+      <div class="form-group">
+        <%= f.label :alarm_at, "Time" %>
+        <%= f.time_field :alarm_at, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :duration, "Duration (minutes)" %>
+        <%= f.number_field :duration, class: "form-control" %>
+      </div>
+      <%= f.submit "Save", class: "btn btn-primary" %>
+    <% end -%>
+
+  <% else -%>
+
+    <dl>
+      <dt>Time</dt>
+        <dd><%= @alarm.alarm_at.strftime("%I:%M %p") %></dd>
+      <dt>Duration</dt>
+        <dd><%= @alarm.duration %> min</dd>
+    </dl>
+    <%= button_to "Cancel", "", method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default" %>
+
+  <% end -%>
+
+</div>
