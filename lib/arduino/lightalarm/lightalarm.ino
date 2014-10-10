@@ -36,6 +36,14 @@ void loop() {
       startTime = millis();
       duration = l.toInt() * 60000;  // minutes to milli
       mode = MODE_WAKE;
+    } else if (inputString.startsWith("set")) {
+      String r = inputString.substring(3, 6);
+      String g = inputString.substring(6, 9);
+      String b = inputString.substring(9, 12);
+      String brightness = inputString.substring(12, 15);
+      stripSet(strip.Color(r.toInt(), g.toInt(), b.toInt()), brightness.toInt());
+      strip.show();
+      mode = MODE_IDLE;
     } else if (inputString.startsWith("stop")) {
       stripSet(strip.Color(0, 0, 0), 0);  // turn off lights
       mode = MODE_IDLE;
@@ -56,6 +64,7 @@ void serialEvent() {
   while (Serial.available()) {
     char inChar = (char) Serial.read();
     if (inChar == '\n') {
+      // TODO: copy to separate string to avoid potential read/write conflict
       inputStringComplete = true;
       break;
     } else {

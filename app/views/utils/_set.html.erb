@@ -1,0 +1,31 @@
+<%= form_tag "utils/set", method: :get, remote: true do %>
+  <div class="row">
+    <div class="col-xs-6">
+      <div class="form-group">
+        <%= label_tag :red %>
+        <%= number_field_tag :red, "", class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-xs-6">
+      <div class="form-group">
+        <%= label_tag :green %>
+        <%= number_field_tag :green, "", class: "form-control" %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-6">
+      <div class="form-group">
+        <%= label_tag :blue %>
+        <%= number_field_tag :blue, "", class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-xs-6">
+      <div class="form-group">
+        <%= label_tag :brightness %>
+        <%= number_field_tag :brightness, "", class: "form-control" %>
+      </div>
+    </div>
+  </div>
+  <%= submit_tag "Set", class: "btn btn-default" %>
+<% end -%>
